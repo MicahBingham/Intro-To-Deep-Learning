@@ -1,0 +1,43 @@
+Epochs: 20, Learning Rate: 0.01, hs1: 200, hs2: 250, hs3: 300, hs4: 350, hs5: 400
+
+Epoch 1 / 20, Loss: 2.3000259399414062, Accuracy: 10.18%, Time: 11.91334342956543 seconds
+Validation for epoch 1/20 finished in 10.596700429916382 seconds. Accuracy: 10.77% || Precision: 0.06804233172593753 || Recall: 0.1077 || F1 Score: 0.04091877149167788
+Epoch 2 / 20, Loss: 2.294778347015381, Accuracy: 13.908%, Time: 11.219289064407349 seconds
+Validation for epoch 2/20 finished in 10.70439338684082 seconds. Accuracy: 15.948% || Precision: 0.07680447101277181 || Recall: 0.15948 || F1 Score: 0.07960787243494659
+Epoch 3 / 20, Loss: 2.278254985809326, Accuracy: 17.01%, Time: 11.246609449386597 seconds
+Validation for epoch 3/20 finished in 10.580432653427124 seconds. Accuracy: 17.82% || Precision: 0.21710225036830066 || Recall: 0.1782 || F1 Score: 0.11071546003616249
+Epoch 4 / 20, Loss: 2.14667010307312, Accuracy: 17.878%, Time: 11.194539070129395 seconds
+Validation for epoch 4/20 finished in 10.650084495544434 seconds. Accuracy: 17.72% || Precision: 0.14139706589103854 || Recall: 0.1772 || F1 Score: 0.08752935752122348
+Epoch 5 / 20, Loss: 1.9757076501846313, Accuracy: 19.834%, Time: 11.215798377990723 seconds
+Validation for epoch 5/20 finished in 10.647559881210327 seconds. Accuracy: 20.924% || Precision: 0.2071671578879349 || Recall: 0.20924 || F1 Score: 0.13268867789348193
+Epoch 6 / 20, Loss: 2.0057244300842285, Accuracy: 23.112%, Time: 11.209907531738281 seconds
+Validation for epoch 6/20 finished in 10.627060413360596 seconds. Accuracy: 25.194% || Precision: 0.23832836134035365 || Recall: 0.25194 || F1 Score: 0.2074446098628077
+Epoch 7 / 20, Loss: 1.8718549013137817, Accuracy: 26.4%, Time: 11.211350202560425 seconds
+Validation for epoch 7/20 finished in 10.60012149810791 seconds. Accuracy: 27.908% || Precision: 0.24836534761982587 || Recall: 0.27908 || F1 Score: 0.2363186023092488
+Epoch 8 / 20, Loss: 1.8310692310333252, Accuracy: 29.448%, Time: 11.235296726226807 seconds
+Validation for epoch 8/20 finished in 10.557833671569824 seconds. Accuracy: 31.406% || Precision: 0.30126499684739816 || Recall: 0.31406 || F1 Score: 0.2879049214095748
+Epoch 9 / 20, Loss: 1.7620630264282227, Accuracy: 32.27%, Time: 11.225383996963501 seconds
+Validation for epoch 9/20 finished in 10.575669050216675 seconds. Accuracy: 33.552% || Precision: 0.32799814711121944 || Recall: 0.33552 || F1 Score: 0.31402514724669056
+Epoch 10 / 20, Loss: 1.7220149040222168, Accuracy: 35.022%, Time: 11.203036308288574 seconds
+Validation for epoch 10/20 finished in 10.58695101737976 seconds. Accuracy: 36.682% || Precision: 0.3574931126585862 || Recall: 0.36682 || F1 Score: 0.35742498618491075
+Epoch 11 / 20, Loss: 1.6765389442443848, Accuracy: 37.476%, Time: 11.234853029251099 seconds
+Validation for epoch 11/20 finished in 10.55697512626648 seconds. Accuracy: 39.412% || Precision: 0.38146133249876146 || Recall: 0.39412 || F1 Score: 0.3812756234978764
+Epoch 12 / 20, Loss: 1.565545678138733, Accuracy: 40.194%, Time: 11.193073749542236 seconds
+Validation for epoch 12/20 finished in 10.617473840713501 seconds. Accuracy: 41.686% || Precision: 0.40627100521156817 || Recall: 0.41686 || F1 Score: 0.39811322164511054
+Epoch 13 / 20, Loss: 1.5268827676773071, Accuracy: 42.348%, Time: 11.407825708389282 seconds
+Validation for epoch 13/20 finished in 10.617205142974854 seconds. Accuracy: 43.664% || Precision: 0.4276346171197437 || Recall: 0.43664 || F1 Score: 0.42585328452185034
+Epoch 14 / 20, Loss: 1.3899993896484375, Accuracy: 44.058%, Time: 11.22715425491333 seconds
+Validation for epoch 14/20 finished in 10.342082262039185 seconds. Accuracy: 45.298% || Precision: 0.44610132153205895 || Recall: 0.45298 || F1 Score: 0.44537865438090224
+Epoch 15 / 20, Loss: 1.3088771104812622, Accuracy: 45.918%, Time: 11.251713275909424 seconds
+Validation for epoch 15/20 finished in 10.662266492843628 seconds. Accuracy: 46.768% || Precision: 0.466618016204879 || Recall: 0.46768 || F1 Score: 0.45903824759969314
+Epoch 16 / 20, Loss: 1.5309126377105713, Accuracy: 46.95%, Time: 11.327844142913818 seconds
+Validation for epoch 16/20 finished in 10.596001386642456 seconds. Accuracy: 48.802% || Precision: 0.48717612878683453 || Recall: 0.48802 || F1 Score: 0.48471676292324345
+Epoch 17 / 20, Loss: 1.2178235054016113, Accuracy: 48.53%, Time: 11.205970764160156 seconds
+Validation for epoch 17/20 finished in 10.577953577041626 seconds. Accuracy: 50.006% || Precision: 0.4953728168277841 || Recall: 0.50006 || F1 Score: 0.49073777499550364
+Epoch 18 / 20, Loss: 1.4111087322235107, Accuracy: 49.99%, Time: 11.201332569122314 seconds
+Validation for epoch 18/20 finished in 10.622258186340332 seconds. Accuracy: 51.794% || Precision: 0.5175293332713794 || Recall: 0.51794 || F1 Score: 0.5125768218697324
+Epoch 19 / 20, Loss: 1.2690098285675049, Accuracy: 51.492%, Time: 11.324510335922241 seconds
+Validation for epoch 19/20 finished in 10.55913496017456 seconds. Accuracy: 52.488% || Precision: 0.5180092006106173 || Recall: 0.52488 || F1 Score: 0.5139799512683257
+Epoch 20 / 20, Loss: 1.3465206623077393, Accuracy: 52.432%, Time: 11.219083786010742 seconds
+Validation for epoch 20/20 finished in 10.605236053466797 seconds. Accuracy: 54.248% || Precision: 0.5416283035356555 || Recall: 0.54248 || F1 Score: 0.538488329630663
+Finished Training 20 epochs in 437.351309299469 seconds

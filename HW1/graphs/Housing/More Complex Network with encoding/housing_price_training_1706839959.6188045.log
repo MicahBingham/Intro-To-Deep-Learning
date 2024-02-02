@@ -1,0 +1,87 @@
+Housing Price
+Batch Size: 16 Epochs: 40 One-Hot Encoding: True Learning Rate: 0.001 Normalize Data: True
+inputSize: 80 hs1: 500 hs2: 1000, hs3: 200, hs4: 20
+
+Number of parameters in model: 745741
+
+Epoch 1 / 40, Loss: 35093753856.0, Time: 1.221923828125 seconds, Training RMSE: 197142.59027289576
+Validation for epoch 1/40 finished in 0.015013933181762695 seconds. RMSE: 198774.10357392242
+Epoch 2 / 40, Loss: 32701796352.0, Time: 0.15914463996887207 seconds, Training RMSE: 189372.2416400588
+Validation for epoch 2/40 finished in 0.016014575958251953 seconds. RMSE: 170146.06220715994
+Epoch 3 / 40, Loss: 4566970368.0, Time: 0.15814781188964844 seconds, Training RMSE: 112355.36270391711
+Validation for epoch 3/40 finished in 0.01501321792602539 seconds. RMSE: 89177.42783634685
+Epoch 4 / 40, Loss: 6593740800.0, Time: 0.16014885902404785 seconds, Training RMSE: 77261.90229112816
+Validation for epoch 4/40 finished in 0.016014814376831055 seconds. RMSE: 87733.75226669906
+Epoch 5 / 40, Loss: 5122018816.0, Time: 0.15859389305114746 seconds, Training RMSE: 77198.35170644372
+Validation for epoch 5/40 finished in 0.016014575958251953 seconds. RMSE: 88322.43341892872
+Epoch 6 / 40, Loss: 3348918016.0, Time: 0.16014504432678223 seconds, Training RMSE: 77511.3153114761
+Validation for epoch 6/40 finished in 0.015014171600341797 seconds. RMSE: 87584.12972898436
+Epoch 7 / 40, Loss: 3554427392.0, Time: 0.15914440155029297 seconds, Training RMSE: 77381.11289859211
+Validation for epoch 7/40 finished in 0.015014410018920898 seconds. RMSE: 88052.95426904681
+Epoch 8 / 40, Loss: 3567265280.0, Time: 0.1561429500579834 seconds, Training RMSE: 77339.88331889841
+Validation for epoch 8/40 finished in 0.015013456344604492 seconds. RMSE: 87688.40957571194
+Epoch 9 / 40, Loss: 3448130048.0, Time: 0.1611461639404297 seconds, Training RMSE: 77335.89927029495
+Validation for epoch 9/40 finished in 0.014013051986694336 seconds. RMSE: 87579.01101400827
+Epoch 10 / 40, Loss: 2080857984.0, Time: 0.15748357772827148 seconds, Training RMSE: 77290.02850498485
+Validation for epoch 10/40 finished in 0.015013456344604492 seconds. RMSE: 87644.09339771191
+Epoch 11 / 40, Loss: 4699240448.0, Time: 0.16014790534973145 seconds, Training RMSE: 77438.4392121667
+Validation for epoch 11/40 finished in 0.016015291213989258 seconds. RMSE: 87566.34083062825
+Epoch 12 / 40, Loss: 3397832192.0, Time: 0.1595451831817627 seconds, Training RMSE: 77421.97856649419
+Validation for epoch 12/40 finished in 0.014924764633178711 seconds. RMSE: 88139.00095482741
+Epoch 13 / 40, Loss: 7053763072.0, Time: 0.15896391868591309 seconds, Training RMSE: 77748.2496110944
+Validation for epoch 13/40 finished in 0.015013933181762695 seconds. RMSE: 87550.1093082722
+Epoch 14 / 40, Loss: 1814939648.0, Time: 0.15896153450012207 seconds, Training RMSE: 77408.9253513753
+Validation for epoch 14/40 finished in 0.016015052795410156 seconds. RMSE: 88197.45753239196
+Epoch 15 / 40, Loss: 3469793536.0, Time: 0.16014552116394043 seconds, Training RMSE: 77263.86787576252
+Validation for epoch 15/40 finished in 0.015014410018920898 seconds. RMSE: 87601.27692820496
+Epoch 16 / 40, Loss: 4887084544.0, Time: 0.16238784790039062 seconds, Training RMSE: 77361.30580983454
+Validation for epoch 16/40 finished in 0.014013051986694336 seconds. RMSE: 87616.09301855235
+Epoch 17 / 40, Loss: 3869687808.0, Time: 0.1581432819366455 seconds, Training RMSE: 77689.34524997532
+Validation for epoch 17/40 finished in 0.016014814376831055 seconds. RMSE: 87558.08226089399
+Epoch 18 / 40, Loss: 6176782336.0, Time: 0.1614077091217041 seconds, Training RMSE: 77295.19791566562
+Validation for epoch 18/40 finished in 0.015013456344604492 seconds. RMSE: 87628.54980815016
+Epoch 19 / 40, Loss: 6975925248.0, Time: 0.15714287757873535 seconds, Training RMSE: 77292.39649290503
+Validation for epoch 19/40 finished in 0.015013456344604492 seconds. RMSE: 87741.9499975346
+Epoch 20 / 40, Loss: 1636768256.0, Time: 0.16014552116394043 seconds, Training RMSE: 77469.21473155184
+Validation for epoch 20/40 finished in 0.015014171600341797 seconds. RMSE: 87919.38392594553
+Epoch 21 / 40, Loss: 8392060416.0, Time: 0.15814447402954102 seconds, Training RMSE: 77381.7606883746
+Validation for epoch 21/40 finished in 0.01601409912109375 seconds. RMSE: 87520.15624939096
+Epoch 22 / 40, Loss: 4483659776.0, Time: 0.1631481647491455 seconds, Training RMSE: 77407.52078996791
+Validation for epoch 22/40 finished in 0.015013456344604492 seconds. RMSE: 87520.88977033872
+Epoch 23 / 40, Loss: 3883521024.0, Time: 0.1581432819366455 seconds, Training RMSE: 77278.34806935748
+Validation for epoch 23/40 finished in 0.016014575958251953 seconds. RMSE: 87536.9908628065
+Epoch 24 / 40, Loss: 2385323520.0, Time: 0.1581439971923828 seconds, Training RMSE: 77288.37575643891
+Validation for epoch 24/40 finished in 0.015013694763183594 seconds. RMSE: 87604.15423689474
+Epoch 25 / 40, Loss: 3057121280.0, Time: 0.15914440155029297 seconds, Training RMSE: 77308.6487752312
+Validation for epoch 25/40 finished in 0.016014814376831055 seconds. RMSE: 87531.3647876522
+Epoch 26 / 40, Loss: 5584977920.0, Time: 0.16109180450439453 seconds, Training RMSE: 77328.74089591751
+Validation for epoch 26/40 finished in 0.015014171600341797 seconds. RMSE: 87508.85468590225
+Epoch 27 / 40, Loss: 4641389568.0, Time: 0.15814447402954102 seconds, Training RMSE: 77405.21892992126
+Validation for epoch 27/40 finished in 0.016015291213989258 seconds. RMSE: 87507.78952662223
+Epoch 28 / 40, Loss: 4164908544.0, Time: 0.16014552116394043 seconds, Training RMSE: 77317.90438308439
+Validation for epoch 28/40 finished in 0.015013694763183594 seconds. RMSE: 87503.90075062565
+Epoch 29 / 40, Loss: 12156073984.0, Time: 0.1580524444580078 seconds, Training RMSE: 77326.6659862427
+Validation for epoch 29/40 finished in 0.01601552963256836 seconds. RMSE: 87532.13725662323
+Epoch 30 / 40, Loss: 15679466496.0, Time: 0.15914607048034668 seconds, Training RMSE: 77296.59930069404
+Validation for epoch 30/40 finished in 0.015012979507446289 seconds. RMSE: 87503.13306202946
+Epoch 31 / 40, Loss: 7447986176.0, Time: 0.16014528274536133 seconds, Training RMSE: 77250.69912774918
+Validation for epoch 31/40 finished in 0.01701521873474121 seconds. RMSE: 88088.93920522241
+Epoch 32 / 40, Loss: 7629582848.0, Time: 0.16214704513549805 seconds, Training RMSE: 77580.92966066918
+Validation for epoch 32/40 finished in 0.014013290405273438 seconds. RMSE: 87619.1067021781
+Epoch 33 / 40, Loss: 4023309824.0, Time: 0.15814423561096191 seconds, Training RMSE: 77352.34981935158
+Validation for epoch 33/40 finished in 0.015013694763183594 seconds. RMSE: 87944.30624167074
+Epoch 34 / 40, Loss: 4806211584.0, Time: 0.15917372703552246 seconds, Training RMSE: 77436.56120520637
+Validation for epoch 34/40 finished in 0.01501321792602539 seconds. RMSE: 87636.87394561096
+Epoch 35 / 40, Loss: 7329150976.0, Time: 0.1631484031677246 seconds, Training RMSE: 77417.56361269727
+Validation for epoch 35/40 finished in 0.015013694763183594 seconds. RMSE: 87540.2726464437
+Epoch 36 / 40, Loss: 4237240320.0, Time: 0.16214704513549805 seconds, Training RMSE: 77227.27861585542
+Validation for epoch 36/40 finished in 0.014012336730957031 seconds. RMSE: 87707.05563970497
+Epoch 37 / 40, Loss: 10716919808.0, Time: 0.15897893905639648 seconds, Training RMSE: 77430.3505932028
+Validation for epoch 37/40 finished in 0.014012575149536133 seconds. RMSE: 87839.43049444845
+Epoch 38 / 40, Loss: 3350938112.0, Time: 0.16514992713928223 seconds, Training RMSE: 77255.32216662158
+Validation for epoch 38/40 finished in 0.016014814376831055 seconds. RMSE: 87498.52696936228
+Epoch 39 / 40, Loss: 5060801536.0, Time: 0.1661512851715088 seconds, Training RMSE: 77306.17684229769
+Validation for epoch 39/40 finished in 0.015014886856079102 seconds. RMSE: 87490.46856454614
+Epoch 40 / 40, Loss: 8861611008.0, Time: 0.16690421104431152 seconds, Training RMSE: 77401.8912005686
+Validation for epoch 40/40 finished in 0.01601386070251465 seconds. RMSE: 87478.92760928905
+Finished Training 40 epochs in 8.074879169464111 seconds

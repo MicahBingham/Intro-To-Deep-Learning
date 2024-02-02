@@ -1,0 +1,16 @@
+This project consists of 2 networks
+1) Classifies CIFAR-1O images using only fully connected layers
+2) Uses regression to determine price of selling a house based on a subset of input features.
+
+Running The Code:
+When running the regression code, only a subset of input features are actually being used. 
+If you would like to use more features from .csv, simply add the names of the columns to 
+the 'usefull_cols' list. Then, increase the number of input features by changing 'inputSize'
+on line 25 to equal the new number of columns being used. Additionally, you'll need to 
+increase 'inputSizeOneHotEncoding' to account for new columns being used.
+
+Results:
+When you run any of the code, training loss and other validation metrics will be recorded. 
+Graphs will be generated and stored in the 'graphs' folder along with a .txt file that 
+has the values at each epoch. The model will be saved to the 'model' folder after the codes
+have finished.
