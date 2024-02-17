@@ -1,0 +1,24 @@
+This project consists of 2 networks
+1) AlexNet which classifies the cifar 10 dataset
+2) ResNet 18 which classifies the cifar 10 dataset
+
+Running The Code:
+Make sure you have created the file structure shown below as if the folders do not exist,
+it could create issues. Settings are at the top of each of the programs so you can easily
+mess with the settings as you see fit.
+
+HW2/
+├─ AlexNet_32x32
+├─ ResNet-18_32x32
+├─ READ ME.txt
+├─ model/
+├─ graphs/
+│  ├─ AlexNet_32x32/
+│  ├─ ResNet18_32x32/
+├─ data/
+
+Results:
+When you run any of the code, training loss and other validation metrics will be recorded. 
+Graphs will be generated and stored in the 'graphs' folder along with a .txt file that 
+has the values at each epoch. The model will be saved to the 'model' folder after the codes
+have finished.
