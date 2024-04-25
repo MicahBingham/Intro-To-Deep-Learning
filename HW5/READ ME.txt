@@ -1,0 +1,39 @@
+This project consists of 3 sets of code all using transformers
+1) sequence_prediction: Next character prediction trained on a dataset that is included.
+2) shakespeare_prediction: Next character prediction trained on a downloaded shakespeare text.
+3) language_seq_to_seq: English/French translation trained on examples provided in code.
+
+Datasets:
+For sequence_prediction, the dataset is found in sequence_part1.txt. If you would like to change
+the dataset, simply replace the text in this file.
+
+For shakespeare_prediction, the dataset is downloaded from a url. To change to trained dataset,
+simply replace the url.
+
+For language_seq_to_seq, the dataset is built into the code. If you wish to change the dataset 
+to different languages, make sure to keep it in pairs like the other dataset is and there should 
+not have to be any other changes.
+
+Running The Code:
+Make sure you have created the file structure shown below as if the folders do not exist,
+it could create issues. Settings are at the top of each of the programs so you can easily
+mess with the settings as you see fit.
+
+sequence_prediction.py
+shakespeare_prediction.py
+language_seq_to_seq.py
+data/
+├─ sequence_part1.txt
+graphs/
+├─ langauge_seq_to_seq/
+├─ sequence_prediction/
+├─ shakespeare_prediction/
+model/
+
+Results:
+When you run any of the code, training loss and other validation metrics will be recorded. 
+Graphs will be generated and stored in the 'graphs' folder along with a .txt file that 
+has the values at each epoch. In saveToLogDelay codes, the variable 'examplesToPrint' controls how 
+many epochs it will wait before printing another line. If you are running a high number of epochs, 
+setting this value can help stop the .txt from being too long. The model will be saved to 
+the 'model' folder after the codes have finished.
