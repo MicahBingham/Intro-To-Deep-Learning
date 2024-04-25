@@ -54,6 +54,8 @@ outputSize = len(chars)
 # Save Parameters to log
 training_log_file.write(f'Epochs: {epochs}, Learning Rate: {learning_rate}, Batch Size: {batchSize}, Input Size: {inputSize}, Hidden Size: {hiddenSize}, Output Size: {outputSize}, Max Sequence Size: {maxSequenceLength}' + '\n')
 training_log_file.flush()
+training_log_file.write(f'number of heads: {nhead}, Number of layers: {num_layers}' + '\n')
+training_log_file.flush()
 
 class PositionalEncoding(nn.Module):
     def __init__(self, d_model, max_len=5000):

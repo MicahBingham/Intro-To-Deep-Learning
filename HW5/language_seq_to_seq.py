@@ -6,7 +6,7 @@ import torch.optim as optim
 from torch.utils.data import DataLoader, Dataset
 import time
 import matplotlib.pyplot as plt
-from torch.nn import TransformerEncoder, TransformerEncoderLayer, TransformerDecoder, TransformerDecoderLayer, Transformer
+from torch.nn import Transformer
 import math
 import numpy as np
 
@@ -233,52 +233,6 @@ training_log_file.flush()
 training_log_file.write(f'Using Device: {device}' + '\n')
 training_log_file.flush()
 
-
-
-class Encoder(nn.Module):
-    def __init__(self):
-        super(Encoder, self).__init__()
-        self.embedding = nn.Embedding(input_size, hidden_size)
-        self.pos_encoder = PositionalEncoding(hidden_size)
-        encoder_layers = nn.TransformerEncoderLayer(hidden_size, nhead)
-        self.transformer_encoder = nn.TransformerEncoder(encoder_layers, num_layers)
-        self.fc = nn.Linear(hidden_size, output_size)
-
-    def forward(self, x):
-        embedded = self.embedding(x)
-        embedded = self.pos_encoder(embedded)
-        transformer_output = self.transformer_encoder(embedded)
-        #output = self.fc(transformer_output[:, -1, :])  # Get the output of the last Transformer block
-        return transformer_output[:,-1,:]
-    
-    
-class Decoder(nn.Module):
-    def __init__(self):
-        super(Decoder, self).__init__()
-        self.embedding = nn.Embedding(output_size, hidden_size)
-        self.pos_encoder = PositionalEncoding(hidden_size)
-        decoder_layers = nn.TransformerDecoderLayer(hidden_size, nhead)
-        self.transformer_decoder = nn.TransformerDecoder(decoder_layers,num_layers)
-        self.linear = nn.Linear(hidden_size, output_size)
-        self.softmax = nn.LogSoftmax(dim=-1)
-
-    def forward(self, encoder_output, target_tensor):
-        # Initialize decoder input with SOS_token
-        #decoder_input = torch.zeros(1, target_tensor.size(0), dtype=torch.long, device=device)
-        
-        # Embed decoder input and apply positional encoding
-        embedding = self.embedding(target_tensor)
-        embedding = self.pos_encoder(embedding)
-
-        # Decode using the transformer decoder
-        decoder_output = self.transformer_decoder(embedding, encoder_output)
-
-        # Apply linear layer and softmax
-        output = self.softmax(self.linear(decoder_output))
-
-        return output
-
-
 class Encoding(nn.Module):
     def __init__(self):
         super(Encoding, self).__init__()
@@ -286,9 +240,10 @@ class Encoding(nn.Module):
         self.decoder_embedding = nn.Embedding(output_size, hidden_size)
         self.pos_encoder = PositionalEncoding(hidden_size)
     def forward(self, input_tensor, output_tensor):
+        # Encode the input
         encoded_input = self.encoder_embedding(input_tensor)
         encoded_input = self.pos_encoder(encoded_input)
-
+        # Encode the output
         encoded_output = self.decoder_embedding(output_tensor)
         encoded_output = self.pos_encoder(encoded_output)
 
@@ -296,11 +251,8 @@ class Encoding(nn.Module):
     
 # Code from the pytorch tutorial found here: https://pytorch.org/tutorials/beginner/transformer_tutorial.html
 class PositionalEncoding(nn.Module):
-
     def __init__(self, d_model: int, dropout: float = p_dropout, max_len: int = 5000):
         super().__init__()
-        self.dropout = nn.Dropout(p=dropout)
-
         position = torch.arange(max_len).unsqueeze(1)
         div_term = torch.exp(torch.arange(0, d_model, 2) * (-math.log(10000.0) / d_model))
         pe = torch.zeros(max_len, 1, d_model)
@@ -314,11 +266,10 @@ class PositionalEncoding(nn.Module):
             x: Tensor, shape ``[seq_len, batch_size, embedding_dim]``
         """
         x = x.unsqueeze(1) # add the batch size of 1 into the middle
-        x = x + self.pe[:x.size(0)]
-        x = x.squeeze(1)
-        #return self.dropout(x)
+        x = x + self.pe[:x.size(0)] # Add the positional encoding
+        x = x.squeeze(1) # remove the batch size of 1 from the middle
         return x
-
+# Transformer model
 class Trans(nn.Module):
     def __init__(self):
         super(Trans, self).__init__()
@@ -332,9 +283,6 @@ class Trans(nn.Module):
         out = self.softmax(self.linear(decoder_output))
         return out
 
-
-#encoder = Encoder().to(device)
-#decoder = Decoder().to(device)
 transformer = Trans().to(device)
 
 # Save how many parameters are in the model
@@ -343,37 +291,21 @@ print(f'Total number of parameters in the model: {total_params}')
 training_log_file.write(f'Number of parameters in model: {total_params}' + '\n')
 training_log_file.flush()
 
-# Initializing optimizers for both encoder and decoder with Stochastic Gradient Descent (SGD)
-#encoder_optimizer = optim.Adam(encoder.parameters(), lr=learning_rate)
-#decoder_optimizer = optim.Adam(decoder.parameters(), lr=learning_rate)
+# Initializing optimizers for transformer
 transformer_optimizer = optim.Adam(transformer.parameters(), lr=learning_rate)
 
 def train(input_tensor, target_tensor):
     # Clear gradients for optimizers
-    #encoder_optimizer.zero_grad()
-    #decoder_optimizer.zero_grad()
     transformer_optimizer.zero_grad()
-
-
-    # Encode input sequence
-    #encoder_output = encoder(input_tensor)gue
-
-    # Decode the input sequence using the decoder
-    #decoder_output = decoder(encoder_output, target_tensor)
+    # Feed tensors through transformer
     decoder_output = transformer(input_tensor, target_tensor)
-    #print(guesses_index[0,1])
-    # Create a tensor where each element in the final dimension contains the max value
-    #guesses = max_values.unsqueeze(-1).expand_as(decoder_output)
-    #target_tensor = target_tensor.type(torch.LongTensor).to(device)
-    # Calculate loss
+    # calculate the loss for the output of the transformer
     loss = criterion(decoder_output, target_tensor)
 
     # Backpropagation
     loss.backward()
 
-    # Update encoder and decoder parameters
-    #encoder_optimizer.step()
-    #decoder_optimizer.step()
+    # Update transformer parameters
     transformer_optimizer.step()
 
     return loss.item()
@@ -404,17 +336,12 @@ def evaluate_and_show_examples():
             input_tensor = input_tensor[0].to(device)
             target_tensor = target_tensor[0].to(device)
 
-            
-            #encoder_hidden = encoder.initHidden()
-
             input_length = input_tensor.size(0)
             target_length = target_tensor.size(0)
 
             loss = 0
 
             # Encoding step
-            #for ei in range(input_length):
-            #    encoder_output, encoder_hidden = encoder(input_tensor[ei].unsqueeze(0), encoder_hidden)
 
             if frenToEng:
                 SOS_token = dataset.eng_vocab.word2index['<SOS>']
@@ -425,22 +352,6 @@ def evaluate_and_show_examples():
                 EOS_token = dataset.fr_vocab.word2index['<EOS>']
                 PAD_token = dataset.fr_vocab.word2index['<PAD>']
             
-            # Decoding step
-            #decoder_input = torch.tensor(SOS_token, device=device)
-            
-            #decoder_hidden = encoder_hidden
-
-            
-
-            #for di in range(target_length-1):
-            #    decoder_output, decoder_hidden = decoder(decoder_input, decoder_hidden)
-            #    topv, topi = decoder_output.topk(1)
-            #    predicted_indices.append(topi.item())
-            #    decoder_input = topi.squeeze().detach()
-
-             #   loss += criterion(decoder_output, target_tensor[di+1].unsqueeze(0))
-             #   if decoder_input.item() == EOS_token:
-                    #break
             decoder_output = transformer(input_tensor, target_tensor)
             loss = criterion(decoder_output, target_tensor)
 
@@ -451,8 +362,6 @@ def evaluate_and_show_examples():
 
             # Calculate and print loss and accuracy for the evaluation
             total_loss += loss.item() / target_length
-            # Remove the <SOS> and <PAD> Characters since the loop ends before adding them
-            #temp = [e for e in target_tensor.tolist() if e not in (SOS_token, EOS_token, PAD_token)]
             temp = target_tensor.tolist()
             if predicted_indices == temp:
                 correct_predictions += 1
@@ -462,6 +371,7 @@ def evaluate_and_show_examples():
                 training_log_file.write('Prediction: ')
                 training_log_file.flush()  
                 for token in predicted_indices:
+                    # Don't print tokens for SOS or anything like that since they are information
                     if(token != EOS_token and token != SOS_token and token != PAD_token):
                         if(engToFren):
                             print(f'{dataset.fr_vocab.index2word[token]}', end = ' ')
@@ -475,6 +385,7 @@ def evaluate_and_show_examples():
                 training_log_file.write('\nTarget: ')
                 training_log_file.flush()  
                 for token in target_tensor.tolist():
+                    # Don't print tokens for SOS or anything like that since they are information
                     if(token != EOS_token and token != SOS_token and token != PAD_token):
                         if(engToFren):
                             print(f'{dataset.fr_vocab.index2word[token]}', end = ' ')
@@ -520,12 +431,6 @@ for epoch in range(epochs):
         # Move tensors to the correct device
         input_tensor = input_tensor[0].to(device)
         target_tensor = target_tensor[0].to(device)
-        
-        #while(input_tensor.size(0) > target_tensor.size(0)):
-        #    input_tensor = torch.cat((input_tensor, torch.zeros(1).to(device)), dim = 0)
-
-        #while(target_tensor.size(0) > input_tensor.size(0)):
-        #    input_tensor = torch.cat((target_tensor, torch.zeros(1).to(device)), dim = 0)
 
         # If translating english to french, keep input and target tensors.
         # If translating french to english, swap the input and target tensors.
@@ -548,6 +453,7 @@ for epoch in range(epochs):
         training_log_file.write(f'Epoch {epoch+1} / {epochs}, Loss: {total_loss}, Time: {elapsed_time} seconds' + '\n')
         training_log_file.flush()
 
+# Create graphs and relavent information
 print(f'Training Completed in {total_time} seconds')
 training_log_file.write(f'Training Completed in {total_time} seconds' + '\n')
 training_log_file.flush()
@@ -564,7 +470,7 @@ print("Training Loss Graph Generated")
 
 # save Model
 torch.save(transformer, 'model/transformer_sequence_to_sequence_prediction.pt')
-
+# Calculate validation loss and show some examples
 evaluate_and_show_examples()
 
 
