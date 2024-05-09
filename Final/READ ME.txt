@@ -1,0 +1,48 @@
+This project contains code to test 4 different models on classifying animals based on whether they
+are “Predator”, “Prey”, or “Endangered." The 4 models are as follows:
+1) Custom EfficientNet b0
+2) Pretrained EfficientNet b2
+3) Custom ResNet 18
+4) Pretrained ResNet 18
+
+Datasets:
+The dataset used can be found here: 
+https://www.kaggle.com/datasets/iamsouravbanerjee/animal-image-dataset-90-different-animals/data
+It holds 90 different classes of species seperated by name. Simply download it and put it in the
+"data" folder as shown in the "running the code" section below.
+
+Running The Code:
+Make sure you have created the file structure shown below as if the folders do not exist,
+it could create issues. Settings are at the top of each of the programs so you can easily
+mess with the settings as you see fit.
+
+The data folder holds the path to the animal dataset mentioned earlier. Either rename the folders to
+match what is shown or change in the Dataloader.py to using the new folder names.
+
+data/
+├─ Animal Species/
+│  ├─ animals/
+│  │  ├─ animals/
+graphs/
+model/
+Final Code.py
+modelv2_resnet.py
+DataLoader.py
+Modelv2_attempt2.py
+
+* Final Code is the main code for training.
+* modelv2_resnet contains the custom resnet implementation.
+* DataLoader holds the code for loading the images and classifying them.
+* Modelv2_attempt2 contains the custom EfficientNet implementation.
+
+Modifying The Dataloader:
+While many dataloaders are present in this code, the one used was "AnimalsDataset2." Please make any
+changes you may want to in this class. Input Image resolution can be changed here but changing this 
+may require modifying the custom models.
+
+
+Results:
+When you run any of the code, training loss and other validation metrics will be recorded. 
+Graphs will be generated and stored in the 'graphs' folder along with a .txt file that 
+has the values at each epoch. The model will be saved to 
+the 'model' folder after the codes have finished.
