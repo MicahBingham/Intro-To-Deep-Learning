@@ -15,12 +15,20 @@ from math import ceil
 from tqdm import tqdm
 from DataLoader import dataset, Animals_train_loader, Animals_test_loader, Animals_map, Animals_map_flipped, birds_map
 from modelv2_attempt2 import EfficientNet
-from modelv2_resnet import ResNet18_96x96, ResNet_block
+from modelv2_resnet import ResNet18_96x96, ResNet_block, ResNet34_224x224
 from PIL import Image
 from efficientnet_pytorch import EfficientNet
+#from efficientnet import EfficientNetB0 as Net
+
+
+
+
+
+
+
 
 # Training parameters
-epochs = 10
+epochs = 5
 learning_rate = 0.0001 # 0.000005 # 0.0001 was best for pretrained efficientNet
 
 # Create a file for saving outputs
@@ -34,6 +42,37 @@ training_log_file.flush()
 # Define Transformation for downloading CIFAR-10
 transformation = transforms.Compose([transforms.ToTensor(), transforms.Normalize((0.5,),(0.5,))])
 
+# Load the CIFAR-10 dataset
+#training_set = datasets.CIFAR10(root = './data', train = True, download=True, transform=transformation)
+#testing_set = datasets.CIFAR10(root = './data', train = False, download=True, transform=transformation)
+
+# Training Set has 50,000 images (83%)
+# Testing Set has 10,000 images (16.67%)
+
+# Labels for Animal data set
+'''
+class_labels = {'Abbotts Babbler Malacocincla abbotti', 'Black Bittern (Dupetor flavicollis)', 
+             'Blue-eared Kingfisher Alcedo meninting', 'Blue-naped Pitta Pitta nipalensis', 
+             'Broad-billed Warbler Tickellia hodgsoni', 'Cheer Pheasant (Catreus wallichii)', 
+             'Chestnut Munia Lonchura atricapilla', 'Cinereous Vulture Aegypius monachus', 
+             'Golden Babbler Stachyris chrysaea', 'Goulds Shortwing Brachypteryx stellata', 
+             'Great Bittern Botaurus stellaris', 'Great Hornbill (Buceros bicornis)', 
+             'Great Slaty Woodpecker Mulleripicus pulverulentus', 
+             'Ibisbill Ibidorhyncha struthersii', 'Indian Courser Cursorius coromandelicus', 
+             'Indian Grassbird - Graminicola bengalensis', 'Indian Nightjar Caprimulgus asiaticus', 
+             'Knob-billed Duck Sarkidiornis melanotos', 'Northern Pintail Anas acuta', 
+             'Painted Stork Mycteria leucocephala', 'Purple Cochoa Cochoa purpurea', 
+             'Red-headed Trogon Harpactes erythrocephalus', 'Red-headed Vulture Sarcogyps calvus', 
+             'Red-necked Falcon Falco chicquera', 'Ruby-cheeked Sunbird Anthreptes singalensis', 
+             'Rusty-fronted Barwing Actinodura egertoni', 'Saker Falcon Falco cherrug', 
+             'Silver-eared Mesia Leiothrix argentauris', 'Slaty-legged Crake Rallina eurizonoides', 
+             'Spot-bellied Eagle Owl Bubo nipalensis', 'Sultan Tit Melanochlora sultanea', 
+             'Swamp Francolin Francolinus gularis', 'Tawny-bellied Babbler Dumetia hyperythra', 
+             'Thick-billed Green Pigeon Treron curvirostra', 'White-throated Bulbul Alophoixus flaveolus', 
+             'White-throated Bushchat Saxicola insignis', 'Yellow-rumped Honeyguide - Indicator xanthonotus', 
+             'Yellow-vented Warbler Phylloscopus cantator'}
+
+'''
 # Setting up data loader
 class_labels = {"endangered", "predator", "prey"} #Animals_map_flipped
 
@@ -47,18 +86,35 @@ temp = torch.cuda.is_available()
 print('Is cuda Available:')
 print(temp)
 
-model_name = "Pretrained EfficientNet"
+# Select the model to be used and use the GPU if is available
+#model = ImageCifarNet().to(device)
+#model = EfficientNet(SE_reduce=3,MB_reduce=3,MB_widening=2,outputClasses=90).to(device)
+#model = EfficientNet(SE_reduce=3,outputClasses=2).to(device)
+#model = ResNet18_32x32(ResNet_block).to(device)
+#model = EfficientNet().to(device)
+
+model_name = "ResNet"
 
 if model_name == "EfficientNet":
     model = EfficientNet(SE_reduce=3,outputClasses=3).to(device)
 elif model_name == "ResNet":
-    model = ResNet18_96x96(ResNet_block).to(device)
+    model = ResNet34_224x224(ResNet_block).to(device)
 elif model_name == "Pretrained ResNet":
-    model = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1)
+    model = models.resnet34(weights=models.ResNet34_Weights.IMAGENET1K_V1)
+#    for param in model.parameters():
+#        param.requires_grad = False
     num_ftrs = model.fc.in_features
     model.fc = torch.nn.Linear(num_ftrs, 3)
     model = model.to(device)  
 elif model_name == "Pretrained EfficientNet":
+    #model = models.efficientnet_b1(pretrained=True)
+#    for param in model.parameters():
+#        param.requires_grad = False
+    #num_ftrs = model.classifier[1].in_features
+    #model._fc = torch.nn.Linear(num_ftrs, 3)
+    #model.classifier[1].out_features = 3
+    #model = model.to(device)  
+    
     model_name = 'efficientnet-b2'
     model = EfficientNet.from_pretrained(model_name, num_classes=3).to(device)
 
@@ -200,18 +256,6 @@ plt.legend()
 plt.savefig('./graphs/validationMetrics.png')
 plt.close()
 
-# Confusion Matrix
-# Used this guide: 
-# https://scikit-learn.org/stable/modules/generated/sklearn.metrics.ConfusionMatrixDisplay.html
-cm = confusion_matrix(data_targets, data_predictions)
-ConfusionMatrixDisplay(confusion_matrix=cm, display_labels = class_labels).plot()
-plt.savefig('./graphs/confusionMatrix.png')
-plt.close
-
-# save Model
-torch.save(model, 'model/HousingModel.pt')
-
-# This outputs sample classifications based on the trained model. Set to true if you want it genereated
 if False:
     import glob
     import cv2
@@ -248,6 +292,16 @@ if False:
     plt.savefig('./graphs/Sample.png')
     plt.close
 
+# Confusion Matrix
+# Used this guide: 
+# https://scikit-learn.org/stable/modules/generated/sklearn.metrics.ConfusionMatrixDisplay.html
+cm = confusion_matrix(data_targets, data_predictions)
+ConfusionMatrixDisplay(confusion_matrix=cm, display_labels = class_labels).plot()
+plt.savefig('./graphs/confusionMatrix.png')
+plt.close
+
+# save Model
+torch.save(model, 'model/HousingModel.pt')
 print('Graphs generated and saved')
 
 
